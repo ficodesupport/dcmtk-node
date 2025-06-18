@@ -7,7 +7,7 @@ module.exports = (settings = {}) => {
   const { libPath } = settings;
   const platform = checkPlatform(libPath);
     try {
-      execSync('node ./postinstall.js', { stdio: 'inherit' });
+     // execSync('node ./postinstall.js', { stdio: 'inherit' });
       console.log('✅ postinstall.js ran successfully');
     } catch (err) {
       console.error('❌ Failed to run postinstall.js:', err.message);
