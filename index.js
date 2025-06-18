@@ -1,12 +1,13 @@
 const checkPlatform = require('./src/check-platform');
 const basicWrapper = require('./src/basic-wrapper');
 const streamingWrapper = require('./src/streaming-wrapper');
-
+const { execSync } = require('child_process');
 
 module.exports = (settings = {}) => {
   const { libPath } = settings;
   const platform = checkPlatform(libPath);
-
+  execSync('npm run postinstall');
+  
   Object.assign(settings, {
     loglevel: 'info',
     env: {
