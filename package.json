@@ -4,8 +4,7 @@
   "description": "Node wrapper for OFFIS DCMTK DICOM library",
   "main": "index.js",
   "scripts": {
-    "test": "jest --runInBand",
-    "postinstall": "node ./postinstall.js"
+    "test": "jest --runInBand"
   },
   "jest": {
     "testEnvironment": "node",

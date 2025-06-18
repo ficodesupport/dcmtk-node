@@ -6,7 +6,12 @@ const { execSync } = require('child_process');
 module.exports = (settings = {}) => {
   const { libPath } = settings;
   const platform = checkPlatform(libPath);
-  execSync('npm run postinstall');
+    try {
+      execSync('node ./postinstall.js', { stdio: 'inherit' });
+      console.log('✅ postinstall.js ran successfully');
+    } catch (err) {
+      console.error('❌ Failed to run postinstall.js:', err.message);
+    }
   
   Object.assign(settings, {
     loglevel: 'info',
