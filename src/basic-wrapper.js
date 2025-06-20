@@ -30,10 +30,17 @@ module.exports = (_options) => {
       return callback('Parameter "args" must be array of strings');
     }
 
-    if (settings.loglevel) {
+    // Check for conflicts with --log-level
+    const lowerArgs = args.map(arg => arg.toLowerCase());
+    const hasConflictingFlags =
+      lowerArgs.includes('-v') || lowerArgs.includes('--verbose') ||
+      lowerArgs.includes('--debug') || lowerArgs.includes('--quiet');
+
+    if (settings.loglevel && !hasConflictingFlags) {
       args.unshift('--log-level', settings.loglevel);
     }
 
+    // Add --print-filename when scanning directories
     if (args.includes('--scan-directories') || args.includes('+sd')) {
       if (!(args.includes('--print-filename') || args.includes('+F'))) {
         args.unshift('--print-filename');
@@ -76,9 +83,10 @@ module.exports = (_options) => {
       }
 
       return callback(null, {
-        parsed: outputParsers[command] && combined
-          ? outputParsers[command](combined, args)
-          : combined,
+        parsed:
+          outputParsers[command] && combined
+            ? outputParsers[command](combined, args)
+            : combined,
         output: combined,
       });
     });

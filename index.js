@@ -54,7 +54,7 @@ module.exports = (settings = {}) => {
     dcmqridx: getWrapper('dcmqridx'),
     dcmconv: getWrapper('dcmconv'),
     getscu: getWrapper('getscu'),        
-    modifyscu: getWrapper('modifyscu'),  
+    dcmodify: getWrapper('dcmodify'),  
     storescu: getWrapper('storescu'),    
     platform,
   };

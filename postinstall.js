@@ -13,7 +13,7 @@ const binariesToKeep = [
   'dcmqridx',
   'dcmconv',
   'storescu',
-  'modifyscu',
+  'dcmodify',
   'getscu'
 ];
 
