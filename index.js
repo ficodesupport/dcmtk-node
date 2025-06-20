@@ -2,7 +2,6 @@ const checkPlatform = require('./src/check-platform');
 const basicWrapper = require('./src/basic-wrapper');
 const streamingWrapper = require('./src/streaming-wrapper');
 
-
 module.exports = (settings = {}) => {
   const { libPath } = settings;
   const platform = checkPlatform(libPath);
@@ -13,17 +12,11 @@ module.exports = (settings = {}) => {
       DCMDICTPATH: platform.DCMDICTPATH,
     },
   });
+
   function getWrapper(command) {
     let wrapper;
     switch (command) {
       case 'storescp':
-        wrapper = streamingWrapper({
-          command,
-          platform,
-          settings,
-        });
-        break;
-
       case 'dcmqrscp':
         wrapper = streamingWrapper({
           command,
@@ -60,6 +53,9 @@ module.exports = (settings = {}) => {
     movescu: getWrapper('movescu'),
     dcmqridx: getWrapper('dcmqridx'),
     dcmconv: getWrapper('dcmconv'),
+    getscu: getWrapper('getscu'),        
+    modifyscu: getWrapper('modifyscu'),  
+    storescu: getWrapper('storescu'),    
     platform,
   };
 };
