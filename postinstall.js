@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const rimraf = require('rimraf');
 const { execSync } = require('child_process');
-const { platform, BINARIES } = require('../src/check-platform')();
+const { platform, BINARIES } = require('./src/check-platform')();
  
 const binariesToKeep = [
   'dcmdump',
