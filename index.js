@@ -56,7 +56,7 @@ module.exports = (settings = {}) => {
     getscu: getWrapper('getscu'),        
     dcmodify: getWrapper('dcmodify'),  
     storescu: getWrapper('storescu'),    
-    dcmxml: getWrapper('dcmxml'),    
+    dcm2xml: getWrapper('dcm2xml'),    
     platform,
   };
 };

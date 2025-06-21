@@ -15,7 +15,7 @@ const binariesToKeep = [
   'storescu',
   'dcmodify',
   'getscu',
-  'dcmxml'
+  'dcm2xml'
 ];
 
 const installedAsModule = path.basename(path.resolve(__dirname, '..')) === 'node_modules';
