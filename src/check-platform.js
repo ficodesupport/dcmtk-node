@@ -1,19 +1,20 @@
+const fs = require('fs');
 const path = require('path');
 const os = require('os');
 
-const platform = os.platform(); // 'win32', 'darwin', 'linux'
-const arch = os.arch();         // 'x64', 'arm64', etc.
-
+const platform = os.platform();     // win32, linux, darwin
+const arch = os.arch();             // x64, arm64, ia32
 const libPath = path.resolve(__dirname, '..', 'lib');
-
-// Handles Electron asar unpacking if needed
 const unpack = (p) => p.replace('app.asar', 'app.asar.unpacked');
 
+// Detects correct binary folder
 function getBinaryPath() {
   if (platform === 'win32') {
-    return arch === 'x64'
-      ? unpack(path.resolve(libPath, 'dcmtk', 'dcmtk-3.6.9-win64-dynamic', 'bin'))
-      : unpack(path.resolve(libPath, 'dcmtk', 'dcmtk-3.6.9-win32-dynamic', 'bin'));
+    if (arch === 'x64') {
+      return unpack(path.resolve(libPath, 'dcmtk', 'dcmtk-3.6.9-win64-dynamic', 'bin'));
+    } else {
+      return unpack(path.resolve(libPath, 'dcmtk', 'dcmtk-3.6.9-win32-dynamic', 'bin'));
+    }
   }
 
   if (platform === 'darwin') {
@@ -30,9 +31,9 @@ function getBinaryPath() {
 }
 
 const binaryPath = getBinaryPath();
-
 const DCMDICTPATH = path.resolve(binaryPath, '..', 'share', 'dcmtk', 'dicom.dic');
 
+// Export configuration
 module.exports = () => ({
   platform,
   arch,
