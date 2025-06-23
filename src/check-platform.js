@@ -5,7 +5,8 @@ const platform = os.platform(); // 'win32', 'darwin', 'linux'
 const arch = os.arch(); // 'x64', 'arm64', etc.
 const libPath = path.resolve(__dirname, '..', 'lib');
 const unpack = (p) => p.replace('app.asar', 'app.asar.unpacked');
-
+console.log("platform",platform)
+console.log("arch",arch)
 function getBinaryPath() {
   if (platform === 'win32') {
     return unpack(path.resolve(libPath, 'dcmtk', 'dcmtk-3.6.9-win32-dynamic', 'bin'));
